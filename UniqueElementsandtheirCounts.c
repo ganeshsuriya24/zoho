@@ -17,7 +17,7 @@ int main(void) {
 	        newArray[newArrayLength][0]=array[i];
 	        int count=1;
 	        for(int j=i+1;j<arrayLength;j++){
-	            if(array[i]==array[j]&&array[i]!='*'){
+	            if(array[i]==array[j]){
 	                count++;
 	                array[j]='*';
 	            }
