@@ -1,40 +1,44 @@
 #include <stdio.h>
-/* 
-1.Obtain string array
-2.Convert them to integer and store it in integer array.
-3.Bubble sort is used to sort the array.
-4.Print the result using for loop.
-*/
+#include <string.h>
+#include <stdlib.h>
+void stringSwap(char *s1,char *s2){ //Function to swap two strings.
+     char t[10];
+    strcpy(t,s1);
+    strcpy(s1,s2);
+    strcpy(s2,t);
+}
 int main(void) {
    char s[100][100];
-   int a[100],arrayLength=0;
-   while(scanf("%s",s[arrayLength++])>0);
-   
+   int arrayLength=0;
+   while(scanf("%s",s[arrayLength++])>0); //string array input is obtained
    for(int i=0;i<arrayLength;i++){
-       int j=0,sign =1;
-       if(s[i][0]=='-'){
-           sign=-1;
-           j=1;
-       }
-       int rev=0;
-       while(s[i][j]!='\0'){
-           rev=rev*10+(s[i][j]-'0');
-           j++;
-       }
-       a[i]=rev*sign;
+	   for(int j=i+1;j<arrayLength;j++){
+	       if(s[i][0]=='-'&&s[j][0]=='-'){
+	           if(strlen(s[i])<strlen(s[j])){
+	               stringSwap(s[i],s[j]);
+	           }
+	           else if(strlen(s[i])==strlen(s[j])&&(strcmp(s[i],s[j])<strcmp(s[j],s[i]))){
+	               stringSwap(s[i],s[j]);
+	           }
+	       }
+	       else if(s[i][0]!='-'&&s[j][0]=='-'){
+	            stringSwap(s[i],s[j]);
+	       }
+		   else if((strlen(s[i])>strlen(s[j]))&&s[i][0]!='-'&&s[j][0]!='-'){
+		       stringSwap(s[i],s[j]);
+		   }
+		   else if(strlen(s[i])==strlen(s[j])){
+		       if(strcmp(s[i],s[j])>strcmp(s[j],s[i])){
+		          stringSwap(s[i],s[j]);
+		       }
+		   }
+	   }
    }
-  for(int i=0;i<arrayLength-1;i++){
-      for(int j=i+1;j<arrayLength-1;j++){
-          if(a[i]>a[j]){
-              int t=a[i];
-              a[i]=a[j];
-              a[j]=t;
-          }
-      }
-  }
-  for(int i=0;i<arrayLength-1;i++){
-      printf("%d ",a[i]);
-  }
+   for(int i=0;i<arrayLength;i++){
+       printf("%s ",s[i]);
+   }
+			   
+  
 	return 0;
 }
 
