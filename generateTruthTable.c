@@ -49,6 +49,33 @@ int main() {
   for(int i=0;i<ttrows;i++){
       for(int j=0;j<varcnt;j++){
           printf("%d\t",tt[i][j]);
-      } printf("| %d\n",tt[i][0]^tt[i][1]);
+      }
+      int expr=tt[i][0]; 
+      for(int k=1;k<strlen(s);k++){
+          if(s[k]=='+'&&(s[k+1]>='A'&&s[k+1]<='Z')){
+              int r=0;
+              while(r<varcnt){
+                  if(s[k+1]==var[r]){
+                      break;
+                  }
+                  r++;
+              }
+              k++;
+              expr=expr|tt[i][r];
+             
+          }
+          else if(s[k]=='*'&&(s[k+1]>='A'&&s[k+1]<='Z')){
+              int r=0;
+              while(r<varcnt){
+                  if(s[k+1]==var[r]){
+                      break;
+                  }
+                  r++;
+              }
+              k++;
+              expr=expr&tt[i][r];
+          }
+      }
+      printf("%d\n",expr);
   }
 }
