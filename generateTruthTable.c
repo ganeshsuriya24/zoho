@@ -64,7 +64,7 @@ int main() {
               expr=expr|tt[i][r];
              
           }
-          else if(s[k]=='*'&&(s[k+1]>='A'&&s[k+1]<='Z')){
+          else if(s[k]=='.'&&(s[k+1]>='A'&&s[k+1]<='Z')){
               int r=0;
               while(r<varcnt){
                   if(s[k+1]==var[r]){
